@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+export JAVA_BINARY="/home/pi/bot/backend/mirai/java/bin/java"
+$JAVA_BINARY -jar mcl.jar $*
