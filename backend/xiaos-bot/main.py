@@ -1,6 +1,8 @@
+import asyncio
+import sys
+import os
 from graia.broadcast import Broadcast
 from avilla import Avilla
-import asyncio
 from avilla.onebot.protocol import OnebotProtocol
 from avilla.onebot.config import OnebotConfig, WebsocketCommunication
 from avilla.network.clients.aiohttp import AiohttpWebsocketClient
@@ -10,8 +12,6 @@ from yarl import URL
 from avilla.event.message import MessageEvent
 from graia.saya import Saya
 from graia.saya.builtins.broadcast import BroadcastBehaviour
-import os
-import sys
 import api
 import uvicorn
 
