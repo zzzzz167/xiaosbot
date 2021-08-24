@@ -80,5 +80,5 @@ if __name__ == "__main__":
         loop.run_until_complete(app.launch())
         loop.run_forever()
     except KeyboardInterrupt:
-        logger.info("bye~")
+        logger.info("bye~ have a nice day")
         quit()
