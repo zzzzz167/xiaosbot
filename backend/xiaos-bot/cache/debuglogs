@@ -24516,3 +24516,16 @@
 2021-08-24 09:33:48.759 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
 2021-08-24 09:33:53.758 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
 2021-08-24 09:33:58.759 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
+2021-08-25 13:34:33.907 | DEBUG    | graia.saya:require:107 - require modules.test
+2021-08-25 13:34:33.912 | INFO     | graia.saya:require:128 - module loading finished: modules.test
+2021-08-25 13:34:33.913 | DEBUG    | graia.saya:require:107 - require modules.__init__
+2021-08-25 13:34:33.915 | INFO     | graia.saya:require:128 - module loading finished: modules.__init__
+2021-08-25 13:34:33.917 | INFO     | avilla:launch:58 - hello, world!
+2021-08-25 13:34:33.919 | INFO     | avilla:launch:60 - using platform: universal/OneBot/11
+2021-08-25 13:34:33.928 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:184 - received event [NetworkConnected]: <avilla.event.service.NetworkConnected object at 0xb548c070>
+2021-08-25 13:34:36.990 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
+2021-08-25 13:34:41.992 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
+2021-08-25 13:34:46.992 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
+2021-08-25 13:34:51.992 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
+2021-08-25 13:34:56.992 | DEBUG    | avilla.onebot.protocol:_onebot_ws_data_received:188 - received heartbeat packet
+2021-08-25 13:35:01.778 | INFO     | __main__:<module>:83 - bye~ have a nice day!!
