@@ -14,7 +14,7 @@ pipeline {
       steps {
         echo '正在推送文件...'
         sh 'git fetch https://zzzzz167:"${GITHUB_TOKEN}"@github.com/zzzzz167/xiaosbot.git'
-        sh 'git push -f https://zzzzz167:"${GITHUB_TOKEN}"@github.com/zzzzz167/xiaosbot.git HEAD:master'
+        sh 'git push -f https://zzzzz167:"${GITHUB_TOKEN}"@github.com/zzzzz167/xiaosbot.git HEAD:main'
         echo '已完成文件推送.'
       }
     }
