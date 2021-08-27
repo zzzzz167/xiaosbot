@@ -140,3 +140,4 @@ cython_debug/
 
 debuglogs
 backend/xiaos-bot/cache/debuglogs
+backend/go-cqhttp_linux_armv7/
