@@ -11,16 +11,22 @@
         <template #title>状态</template>
       </el-menu-item>
     </el-menu>
+    {{message.message}}
   </el-col>
 </el-row>
 </template>
 
 <script lang="ts">
+  import axios from "axios";
   export default{
     data(){
       return{
-        message: "hello"
+        message: 'hell vue'
       }
+    },
+    mounted(){
+      axios.get('http://localhost:6010')
+      .then(response => ((this as any).message = response.data))
     }
   }
 </script>
