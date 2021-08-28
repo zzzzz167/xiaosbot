@@ -1,38 +1,26 @@
 <template>
-<el-row class="tac">
-  <el-col :span="3">
-    <el-menu>
-      <div class="title">
-        <i class="el-icon-coffee"></i>
-        Avilla dashboard
-      </div>
-     <el-menu-item index="1">
-        <i class="el-icon-setting"></i>
-        <template #title>状态</template>
-      </el-menu-item>
-    </el-menu>
-    {{message.message}}
-  </el-col>
-</el-row>
+  <el-row :gutter="20">
+    <el-col :span="3">
+      <Menu></Menu>
+    </el-col>
+    <el-col :span="20">
+      
+    </el-col>
+  </el-row>
 </template>
 
-<script lang="ts">
-  import axios from "axios";
-  export default{
-    data(){
-      return{
-        message: 'hell vue'
-      }
-    },
-    mounted(){
-      axios.get('http://localhost:6010')
-      .then(response => ((this as any).message = response.data))
-    }
+<script>
+import Menu from './components/menu.vue'
+export default{
+  components:{
+    Menu
   }
+}
+
 </script>
 
 <style>
-.el-icon-coffee{
-  color: #8cc269;
+.body{
+  font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
 }
 </style>
