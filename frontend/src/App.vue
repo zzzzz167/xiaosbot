@@ -1,6 +1,6 @@
 <template>
 <el-row :gutter="20">
-  <el-col :span="3">
+  <el-col :span="4">
     <el-affix :offset="10">
     <div class="web-info">
       <i class="el-icon-coffee"></i>
@@ -16,9 +16,16 @@
     </nav>
     </el-affix>
   </el-col>
-  <el-col :span="21">
+  <el-col :span="20">
     <main>
-      <router-view/>
+      <el-affix :offset="0">
+        <div class="main-nav">
+          <p class="page-title">{{$route.name}}</p>
+        </div>
+      </el-affix>
+      <div>
+        <router-view/>
+      </div>
     </main>
   </el-col>
 </el-row>
@@ -28,7 +35,9 @@
   export default {
     data() {
       return {
-        menus:[{title: "dashboard", icon: "el-icon-monitor", router: "/"},{title: "Saya Modules", icon: "el-icon-box", router: "/about"}]
+        menus:[{title: "Dashboard", icon: "el-icon-monitor", router: "/"},
+        {title: "Saya Modules", icon: "el-icon-box", router: "/modules"},
+        {title: "Log Output", icon:"el-icon-notebook-2", router: "/log"}]
       }
     }
   }
@@ -40,8 +49,13 @@
   font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB','Microsoft YaHei', '微软雅黑', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
+  margin: -8px -8px auto;
+}
+nav{
+  text-align: center;
+  font-size: 13px;
+  height: 100%;
 }
 .web-info{
   text-align:center;
@@ -51,6 +65,17 @@
   color: #f1c4cd;
 }
 .web-info .web-title{
-  font-size: 19px;
+  font-size: 25px;
+  font-weight: bold;
+}
+.page-title{
+  font-size: 20px;
+}
+.main-nav{
+   z-index: 3;
+   margin-top: 0px;
+   padding: 3px;
+   background-color: #FFFFFF;
+   border-radius: 20px;
 }
 </style>
