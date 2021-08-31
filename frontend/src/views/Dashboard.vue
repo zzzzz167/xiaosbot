@@ -19,7 +19,11 @@
         </div>
       </el-col>
       <el-col :span="12">
-        
+        <el-descriptions title="Avilla Info" column="1" border>
+          <el-descriptions-item v-for="sayainfo in sayainfos" :key="sayainfo" :label="sayainfo.index" width="25px">
+              {{sayainfo.data}}
+            </el-descriptions-item>
+        </el-descriptions>
       </el-col>
   </el-row>
 </template>
@@ -35,7 +39,8 @@ export default {
   data(){
     return{
       wsget: [],
-      sysinfos: [{index:"loding",data:"loding...."}],
+      sysinfos: [{index: "loading", data: "loading...."}],
+      sayainfos: [{index: "loading", data: "loading...."}],
       gauges: [{id: "cpuUse", name:"CPU占用率"},
                {id: "cpuTem", name:"CPU温度"},
                {id: "vMemUse", name:"物理内存使用"},
@@ -48,6 +53,7 @@ export default {
       axios.get("http://192.168.2.101:6010/sys-info")
          .then((res) =>{
            this.sysinfos.shift();
+           this.sayainfos.shift();
            this.sysinfos =[
              {index: "CPU架构", data: res.data["cpuInfo"]},
              {index: "CPU核数", data: res.data["cpuCores"]},
@@ -57,13 +63,24 @@ export default {
              {index: "IP地址", data: res.data["ipHost"]},
              {index: "bot启动时间", data: res.data["startTime"]}
            ];
+           this.sayainfos=[
+             {index: "python版本", data: res.data["pythonVersion"]},
+             {index: "Avilla版本", data: res.data["avillaVersion"]},
+             {index: "Saya Modules", data: res.data["Plugins"]},
+             {index: "网络收包", data: res.data["NetRecv"]},
+             {index: "网络发包", data: res.data["net_sent"]}
+           ]
          });
       var ws = new WebSocket('ws://192.168.2.101:6010/ws/sys-status')
         ws.onmessage = (event) =>{
           this.wsget = JSON.parse(event.data)
         }
         ws.onclose = () =>{
-          alert("WebSocket连接已断开！");
+          this.$notify.info({
+                    title: 'Info',
+                    message: 'WebSocket连接已断开！请刷新页面',
+                    showClose: false
+          });
         }
     });
   }
