@@ -1,9 +1,12 @@
 
 <template>
   <el-row>
-    <el-col :span="6">
-      <div class="gauge" id="cpuuse"></div>
-    </el-col>
+      <Gauge v-for="gauge in gauges" 
+               :key="gauge.id" 
+               :id="gauge.id" 
+               :name="gauge.name"
+               :wsget="wsget">
+      </Gauge>
   </el-row>
   <el-row :gutter="20">
       <el-col :span="12">
@@ -15,48 +18,32 @@
           </el-descriptions>
         </div>
       </el-col>
-      <el-col :span="12"><div class="grid-content bg-purple"></div></el-col>
+      <el-col :span="12">
+        
+      </el-col>
   </el-row>
 </template>
 
 <script>
-import * as echarts from 'echarts'
-import { onMounted } from 'vue'
 import axios from 'axios'
+import Gauge from '../components/gauge.vue'
 
 export default {
-  setup() {
-    onMounted(() => { // 需要获取到element,所以是onMounted的Hook
-      let cpuUse = echarts.init(document.getElementById("cpuuse"));
-      // 绘制图表
-      cpuUse.setOption({
-        tooltip: {
-          formatter: '{a} <br/>{b} : {c}%'
-        },
-        series: [{
-          name: 'USED',
-          type: 'gauge',
-          progress: {
-              show: true
-          },
-          detail: {
-              valueAnimation: true,
-              formatter: '{value}'
-          },
-          data: [{
-              value: 50,
-              name: 'CPU Use'
-          }]
-        }]
-      });
-    });
+  components:{
+    Gauge
   },
   data(){
     return{
+      wsget: [],
       sysinfos: [{index:"loding",data:"loding...."}],
+      gauges: [{id: "cpuUse", name:"CPU占用率"},
+               {id: "cpuTem", name:"CPU温度"},
+               {id: "vMemUse", name:"物理内存使用"},
+               {id: "sMemUse", name:"虚拟内存使用"}]
     }
   },
   mounted(){
+
     this.$nextTick(function(){
       axios.get("http://192.168.2.101:6010/sys-info")
          .then((res) =>{
@@ -71,7 +58,14 @@ export default {
              {index: "bot启动时间", data: res.data["startTime"]}
            ];
          });
-    })
+      var ws = new WebSocket('ws://192.168.2.101:6010/ws/sys-status')
+        ws.onmessage = (event) =>{
+          this.wsget = JSON.parse(event.data)
+        }
+        ws.onclose = () =>{
+          alert("WebSocket连接已断开！");
+        }
+    });
   }
 }
 </script>

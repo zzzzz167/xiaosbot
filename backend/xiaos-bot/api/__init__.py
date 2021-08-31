@@ -81,6 +81,6 @@ async def get_sys_status(ws: WebSocket):
         while True:
             resp = await asyncio.to_thread(get_sys_status_sync)
             await ws.send_json(resp)
-            await asyncio.sleep(1)
+            await asyncio.sleep(2)
     except WebSocketDisconnect:
         await ws.close()
